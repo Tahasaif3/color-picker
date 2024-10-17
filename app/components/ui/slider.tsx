@@ -22,7 +22,10 @@ export const Slider: React.FC<SliderProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value)
     setValue(newValue)
-    onChange && onChange(newValue)
+    
+    if (onChange) {
+      onChange(newValue)
+    }
   }
 
   return (
