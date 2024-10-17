@@ -14,19 +14,19 @@ export default function ColorPicker() {
   const [hexColor, setHexColor] = useState('#808080')
 
   useEffect(() => {
-    updateHexColor()
-  }, [color])
-
-  const updateHexColor = () => {
-    let hex: string
-    if (colorSpace === 'rgb') {
-      hex = `#${color.r.toString(16).padStart(2, '0')}${color.g.toString(16).padStart(2, '0')}${color.b.toString(16).padStart(2, '0')}`
-    } else {
-      const rgb = colorSpace === 'hsl' ? hslToRgb(color.h, color.s, color.l) : hsvToRgb(color.h, color.s, color.v)
-      hex = `#${rgb.r.toString(16).padStart(2, '0')}${rgb.g.toString(16).padStart(2, '0')}${rgb.b.toString(16).padStart(2, '0')}`
+    const updateHexColor = () => {
+      let hex: string
+      if (colorSpace === 'rgb') {
+        hex = `#${color.r.toString(16).padStart(2, '0')}${color.g.toString(16).padStart(2, '0')}${color.b.toString(16).padStart(2, '0')}`
+      } else {
+        const rgb = colorSpace === 'hsl' ? hslToRgb(color.h, color.s, color.l) : hsvToRgb(color.h, color.s, color.v)
+        hex = `#${rgb.r.toString(16).padStart(2, '0')}${rgb.g.toString(16).padStart(2, '0')}${rgb.b.toString(16).padStart(2, '0')}`
+      }
+      setHexColor(hex)
     }
-    setHexColor(hex)
-  }
+
+    updateHexColor()
+  }, [color, colorSpace])  // Add colorSpace as a dependency here
 
   const handleColorChange = (colorKey: string) => (value: number) => {
     setColor(prevColor => ({ ...prevColor, [colorKey]: value }))
