@@ -26,7 +26,7 @@ export default function ColorPicker() {
     }
 
     updateHexColor()
-  }, [color, colorSpace])  // Add colorSpace as a dependency here
+  }, [color, colorSpace])
 
   const handleColorChange = (colorKey: string) => (value: number) => {
     setColor(prevColor => ({ ...prevColor, [colorKey]: value }))
@@ -68,85 +68,91 @@ export default function ColorPicker() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center">Color Picker</h1>
-        
-        <div className="mb-6">
-          <div className="w-full h-40 rounded-lg shadow-inner" style={{ backgroundColor: hexColor }}></div>
-        </div>
-        
-        <div className="mb-4">
-          <Label htmlFor="colorSpace">Color Space</Label>
-          <select
-            id="colorSpace"
-            value={colorSpace}
-            onChange={(e) => setColorSpace(e.target.value as ColorSpace)}
-            className="w-full p-2 border rounded"
-          >
-            <option value="rgb">RGB</option>
-            <option value="hsl">HSL</option>
-            <option value="hsv">HSV</option>
-          </select>
-        </div>
+    <>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-md w-96">
+          <h1 className="text-2xl font-bold mb-6 text-center">Color Picker</h1>
+          
+          <div className="mb-6">
+            <div className="w-full h-40 rounded-lg shadow-inner" style={{ backgroundColor: hexColor }}></div>
+          </div>
+          
+          <div className="mb-4">
+            <Label htmlFor="colorSpace">Color Space</Label>
+            <select
+              id="colorSpace"
+              value={colorSpace}
+              onChange={(e) => setColorSpace(e.target.value as ColorSpace)}
+              className="w-full p-2 border rounded"
+            >
+              <option value="rgb">RGB</option>
+              <option value="hsl">HSL</option>
+              <option value="hsv">HSV</option>
+            </select>
+          </div>
 
-        <div className="space-y-4">
-          {colorSpace === 'rgb' && (
-            <>
-              <div>
-                <Label>Red</Label>
-                <input
-                  type="range"
-                  value={color.r}
-                  max={255}
-                  step={1}
-                  onChange={(e) => handleColorChange('r')(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <Label>Green</Label>
-                <input
-                  type="range"
-                  value={color.g}
-                  max={255}
-                  step={1}
-                  onChange={(e) => handleColorChange('g')(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <Label>Blue</Label>
-                <input
-                  type="range"
-                  value={color.b}
-                  max={255}
-                  step={1}
-                  onChange={(e) => handleColorChange('b')(Number(e.target.value))}
-                />
-              </div>
-            </>
-          )}
-        </div>
-        
-        <div className="mt-6">
-          <Label htmlFor="hexInput">HEX</Label>
-          <Input
-            id="hexInput"
-            type="text"
-            value={hexColor}
-            onChange={handleHexChange}
-            className="font-mono"
-          />
-        </div>
+          <div className="space-y-4">
+            {colorSpace === 'rgb' && (
+              <>
+                <div>
+                  <Label>Red</Label>
+                  <input
+                    type="range"
+                    value={color.r}
+                    max={255}
+                    step={1}
+                    onChange={(e) => handleColorChange('r')(Number(e.target.value))}
+                  />
+                </div>
+                <div>
+                  <Label>Green</Label>
+                  <input
+                    type="range"
+                    value={color.g}
+                    max={255}
+                    step={1}
+                    onChange={(e) => handleColorChange('g')(Number(e.target.value))}
+                  />
+                </div>
+                <div>
+                  <Label>Blue</Label>
+                  <input
+                    type="range"
+                    value={color.b}
+                    max={255}
+                    step={1}
+                    onChange={(e) => handleColorChange('b')(Number(e.target.value))}
+                  />
+                </div>
+              </>
+            )}
+          </div>
+          
+          <div className="mt-6">
+            <Label htmlFor="hexInput">HEX</Label>
+            <Input
+              id="hexInput"
+              type="text"
+              value={hexColor}
+              onChange={handleHexChange}
+              className="font-mono"
+            />
+          </div>
 
-        <div className="mt-6 flex justify-between">
-          <Link href="/">
-            <Button variant="outline">Back to Welcome</Button>
-          </Link>
-          <Button onClick={() => navigator.clipboard.writeText(hexColor)}>
-            Copy HEX
-          </Button>
+          <div className="mt-6 flex justify-between">
+            <Link href="/">
+              <Button variant="outline">Back to Welcome</Button>
+            </Link>
+            <Button onClick={() => navigator.clipboard.writeText(hexColor)}>
+              Copy HEX
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+
+      <footer className="bg-gray-100 text-center py-4 mt-8 w-full">
+        <p className="text-lg text-gray-700">Made by Taha Saif (GIAIC Student)</p>
+      </footer>
+    </>
   )
 }
