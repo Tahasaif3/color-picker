@@ -28,12 +28,12 @@ Installation and Setup
 
 1. Clone the repository:
 
-git clone https://github.com/your-username/Color-Picker-App.git
+git clone https://github.com/your-username/color-picker.git
 
 
 2. Navigate to the project directory:
 
-cd Color-Picker-App
+cd color-picker
 
 
 3. Install dependencies:
